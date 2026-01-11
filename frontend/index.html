@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Routine Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-calendar-check"></i>
+                <span>Routine Tracker</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" onclick="showSection('dashboard')"><i class="fas fa-home"></i> Dashboard</a>
+                <a href="#" onclick="showSection('timetable')"><i class="fas fa-clock"></i> Timetable</a>
+                <a href="#" onclick="showSection('add-task')"><i class="fas fa-plus"></i> Add Task</a>
+                <a href="#" onclick="showSection('analytics')"><i class="fas fa-chart-bar"></i> Analytics</a>
+            </div>
+        </nav>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="hero">
+                <h1><i class="fas fa-sun"></i> Welcome to Your Daily Routine Tracker</h1>
+                <p>Plan your day, track progress, and build better habits</p>
+                
+                <div class="quick-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-tasks"></i>
+                        <h3 id="today-tasks">0</h3>
+                        <p>Today's Tasks</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-check-circle"></i>
+                        <h3 id="completed-tasks">0</h3>
+                        <p>Completed</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3 id="productivity">0%</h3>
+                        <p>Productivity</p>
+                    </div>
+                </div>
+
+                <div class="day-selector">
+                    <h3>Select Day:</h3>
+                    <div class="days" id="day-buttons">
+                        <!-- Days will be loaded by JS -->
+                    </div>
+                </div>
+
+                <div class="today-tasks">
+                    <h3><i class="fas fa-list"></i> Today's Tasks</h3>
+                    <div id="tasks-list">
+                        <!-- Tasks will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timetable Section -->
+        <section id="timetable" class="section">
+            <div class="timetable-container">
+                <h2><i class="fas fa-calendar-alt"></i> Weekly Timetable</h2>
+                <div class="timetable">
+                    <div class="time-slots">
+                        <div class="time-header">Time</div>
+                        <div class="time-slot">6:00 AM</div>
+                        <div class="time-slot">7:00 AM</div>
+                        <div class="time-slot">8:00 AM</div>
+                        <div class="time-slot">9:00 AM</div>
+                        <div class="time-slot">10:00 AM</div>
+                        <div class="time-slot">11:00 AM</div>
+                        <div class="time-slot">12:00 PM</div>
+                        <div class="time-slot">1:00 PM</div>
+                        <div class="time-slot">2:00 PM</div>
+                        <div class="time-slot">3:00 PM</div>
+                        <div class="time-slot">4:00 PM</div>
+                        <div class="time-slot">5:00 PM</div>
+                        <div class="time-slot">6:00 PM</div>
+                        <div class="time-slot">7:00 PM</div>
+                        <div class="time-slot">8:00 PM</div>
+                        <div class="time-slot">9:00 PM</div>
+                        <div class="time-slot">10:00 PM</div>
+                    </div>
+                    <div class="days-container" id="timetable-days">
+                        <!-- Days will be loaded by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Add Task Section -->
+        <section id="add-task" class="section">
+            <div class="form-container">
+                <h2><i class="fas fa-plus-circle"></i> Add New Task</h2>
+                <form id="task-form">
+                    <div class="form-group">
+                        <label><i class="fas fa-heading"></i> Task Title</label>
+                        <input type="text" id="task-title" placeholder="e.g., Morning Exercise" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-file-alt"></i> Description</label>
+                        <textarea id="task-desc" placeholder="Brief description of the task..."></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar-day"></i> Day</label>
+                            <select id="task-day" required>
+                                <option value="">Select Day</option>
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-tag"></i> Category</label>
+                            <select id="task-category">
+                                <option value="work">Work</option>
+                                <option value="study">Study</option>
+                                <option value="exercise">Exercise</option>
+                                <option value="meal">Meal</option>
+                                <option value="leisure">Leisure</option>
+                                <option value="sleep">Sleep</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-clock"></i> Start Time</label>
+                            <input type="time" id="task-start" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-clock"></i> End Time</label>
+                            <input type="time" id="task-end" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-flag"></i> Priority</label>
+                        <div class="priority-buttons">
+                            <button type="button" class="priority-btn low" onclick="setPriority('low')">Low</button>
+                            <button type="button" class="priority-btn medium active" onclick="setPriority('medium')">Medium</button>
+                            <button type="button" class="priority-btn high" onclick="setPriority('high')">High</button>
+                        </div>
+                        <input type="hidden" id="task-priority" value="medium">
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-save"></i> Add Task
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section id="analytics" class="section">
+            <div class="analytics-container">
+                <h2><i class="fas fa-chart-pie"></i> Weekly Analytics</h2>
+                <div class="charts">
+                    <div class="chart-container">
+                        <h3>Completion Rate</h3>
+                        <div class="chart" id="completion-chart">
+                            <!-- Chart will be generated by JS -->
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Task Distribution</h3>
+                        <div class="chart" id="category-chart">
+                            <!-- Chart will be generated by JS -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="summary-table">
+                    <h3>Weekly Summary</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Day</th>
+                                <th>Total Tasks</th>
+                                <th>Completed</th>
+                                <th>Completion %</th>
+                            </tr>
+                        </thead>
+                        <tbody id="summary-body">
+                            <!-- Summary data will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Task Modal -->
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 id="modal-title">Task Details</h3>
+            <div id="modal-body">
+                <!-- Task details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
